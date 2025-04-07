@@ -20,9 +20,9 @@ def movie_list(request):
 
     if request.method == "POST":
         serializer = MovieSerializer(data=request.data)
-        if serializer.is_valid(raise_exception=True):
-            serializer.save()
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        serializer.is_valid(raise_exception=True)
+        serializer.save()
+        return Response(serializer.data, status=status.HTTP_201_CREATED)
 
 
 @api_view(["GET", "PUT", "DELETE"])
@@ -35,9 +35,9 @@ def movie_detail(request, pk):
 
     if request.method == "PUT":
         serializer = MovieSerializer(movie, data=request.data)
-        if serializer.is_valid(raise_exception=True):
-            serializer.save()
-            return Response(serializer.data, status=status.HTTP_200_OK)
+        serializer.is_valid(raise_exception=True)
+        serializer.save()
+        return Response(serializer.data, status=status.HTTP_200_OK)
 
     if request.method == "DELETE":
         movie.delete()
@@ -52,9 +52,9 @@ class GenreList(APIView):
 
     def post(self, request):
         serializer = GenreSerializer(data=request.data)
-        if serializer.is_valid(raise_exception=True):
-            serializer.save()
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        serializer.is_valid(raise_exception=True)
+        serializer.save()
+        return Response(serializer.data, status=status.HTTP_201_CREATED)
 
 
 class GenreDetail(APIView):
@@ -67,9 +67,9 @@ class GenreDetail(APIView):
 
     def put(self, request, pk):
         serializer = GenreSerializer(self.get_object(pk), data=request.data)
-        if serializer.is_valid(raise_exception=True):
-            serializer.save()
-            return Response(serializer.data, status=status.HTTP_200_OK)
+        serializer.is_valid(raise_exception=True)
+        serializer.save()
+        return Response(serializer.data, status=status.HTTP_200_OK)
 
     def patch(self, request, pk):
         serializer = GenreSerializer(
@@ -77,9 +77,9 @@ class GenreDetail(APIView):
             data=request.data,
             partial=True
         )
-        if serializer.is_valid(raise_exception=True):
-            serializer.save()
-            return Response(serializer.data, status=status.HTTP_200_OK)
+        serializer.is_valid(raise_exception=True)
+        serializer.save()
+        return Response(serializer.data, status=status.HTTP_200_OK)
 
     def delete(self, request, pk):
         self.get_object(pk).delete()
